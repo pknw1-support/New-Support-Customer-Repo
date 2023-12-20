@@ -21,6 +21,11 @@ jobs:
           chmod +x init.sh
           ./init.sh 
 
+      - name: cleanup files
+        run: |
+          rm ./init.sh
+          mv .github/workflows/init.yml .github/workflows/init_completed
+          
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
