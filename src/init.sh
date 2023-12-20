@@ -44,5 +44,3 @@ EOF
 
 if [ ! -d .github/workflows ]; then mkdir -p .github/workflows; fi
 cp src/init_wf .github/workflows/setup.yml
-
-#mv .github/workflows/init.yml .github/workflows/init
