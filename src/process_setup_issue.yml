@@ -23,3 +23,21 @@ jobs:
             VALUE=$(cat OUTPUT | grep -A1 ${VARIABLE}| tail -n1 | grep -v \#)
             gh variable set $VARIABLE --body "${VALUE}"
           done
+
+      - name: cleanup
+        run: | 
+          rm ./B64
+          rm ./OUTPUT
+          mv .github/workflows/process_setup_issue.yml .github/workflows/process_setup_issue_done
+                
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          token: ${{ secrets.PAT }}
+          add_timestamp: true
+          commit-message: 'New Setup Complete'
+          title: '[Setup Complete]'
+          body: >
+            Updates to files to be applied
+          labels: setup_done
+          branch: setup_done
