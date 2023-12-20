@@ -10,7 +10,7 @@ cat << EOF > .github/ISSUE_TEMPLATE/setup_new_company.yml
 
 name: Setup New Company
 description: initial setup
-title: "[Setup New]"
+title: "[Setup New Company]"
 labels: ["init"]
 assignees:
   - pknw1
