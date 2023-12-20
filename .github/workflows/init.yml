@@ -26,9 +26,9 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           add_timestamp: true
-          commit-message: 'Automated push of new details'
+          commit-message: 'New Setup Merge'
           title: '[Customer Details Updates]'
           body: >
             Updates to files to be applied
-          labels: admin, update
-          branch: admin/details_update
+          labels: initial_setup
+          branch: initial_setup
