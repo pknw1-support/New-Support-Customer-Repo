@@ -1,0 +1,25 @@
+name: Process Support
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  process-vars:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.PAT }}
+    if: ${{ contains(github.event.issue.title, '[Support Request]') }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Extract Issue Details
+        run: |
+          echo "${{ github.event.issue.body }}" | base64 -w0 > ./B64
+          cat ./B64 | base64 -d | sed '/^[[:space:]]*$/d' > ./OUTPUT
+          cat ./OUTPUT
+
+      - name: cleanup
+        run: | 
+          rm ./B64
+          rm ./OUTPUT
