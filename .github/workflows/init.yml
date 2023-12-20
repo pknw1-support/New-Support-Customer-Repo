@@ -32,7 +32,7 @@ jobs:
           token: ${{ secrets.PAT }}
           add_timestamp: true
           commit-message: 'New Setup Merge'
-          title: '[Customer Details Updates]'
+          title: '[Setup New Company]'
           body: >
             Updates to files to be applied
           labels: initial_setup
