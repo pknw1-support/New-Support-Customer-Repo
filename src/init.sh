@@ -43,4 +43,4 @@ cat << EOF >> .github/ISSUE_TEMPLATE/setup_new_company.yml
 EOF
 
 if [ ! -d .github/workflows ]; then mkdir -p .github/workflows; fi
-cp src//process_setup_issue.yml .github/workflows//process_setup_issue.yml
+cp src//process_setup_issue.yml .github/workflows/process_setup_issue.yml
