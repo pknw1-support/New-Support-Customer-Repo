@@ -2,7 +2,8 @@ name: Process Submiteed Setup Form
 
 on:
   issues:
-    types: [labeled]
+    types:
+      - opened
 
 jobs:
   process-vars:
