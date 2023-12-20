@@ -30,6 +30,14 @@ jobs:
           rm ./B64
           rm ./OUTPUT
           mv .github/workflows/process_setup_issue.yml .github/workflows/process_setup_issue_done
+
+      - name: Add additional Issue Templates
+        run: |
+          cp src/templates/issues/* .github/ISSUE_TEMPLATE/
+
+      - name: Add additional Issue Workflows
+        run: |
+          cp src/templates/workflows/* .github/workflows/
                 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
