@@ -1,4 +1,4 @@
-name: Process Init
+name: Process Submiteed Setup Form  
 
 on:
   issues:
@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.PAT }}
-    if: ${{ contains(github.event.*.labels.*.name, 'init') }}
+    #if: ${{ contains(github.event.*.labels.*.name, 'init') }}
+    if: ${{ contains(github.event.issue.title, '[Setup New Company]') }}
     steps:
       - uses: actions/checkout@v3
       - name: Extract Issue Details
