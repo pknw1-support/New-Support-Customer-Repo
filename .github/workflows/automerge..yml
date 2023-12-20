@@ -2,4 +2,24 @@ name: automerge
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened]
+
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.PAT }}
+    #if: ${{ contains(github.event.*.labels.*.name, 'init') }}
+    if: ${{ contains(github.event.inputs.pull-request.title, '[Setup New Company]') }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: reitermarkus/automerge@v2
+        with:
+          token: ${{ secrets.PAT }}
+          merge-method: rebase
+          do-not-merge-labels: never-merge
+          pull-request: ${{ github.event.inputs.pull-request }}
+          dry-run: true
+  
