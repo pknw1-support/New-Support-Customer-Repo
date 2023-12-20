@@ -14,10 +14,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Extract Issue Details
         run: |
-          echo ${{ github.event.issue.body }} | sed '/^[[:space:]]*$/d' > OUTPUT
-          VAR_NAMES=$(cat OUTPUT | grep \#\#\# | awk '{print $2}')
+          echo "${{ github.event.issue.body }}" | base64 -w0 > ./B64
+          cat ./B64 | base64 -d | sed '/^[[:space:]]*$/d' > ./OUTPUT
+          VAR_NAMES=$(cat ./OUTPUT | grep \#\#\# | awk '{print $2}')
           for VARIABLE in ${VAR_NAMES}
           do
             VALUE=$(cat OUTPUT | grep -A1 ${VARIABLE}| tail -n1 | grep -v \#)
-            gh variable set $VAR --body "${VALUE}"
+            gh variable set $VARIABLE --body "${VALUE}"
           done
